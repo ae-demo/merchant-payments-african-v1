@@ -1,0 +1,28 @@
+apiVersion: openchoreo.dev/v1alpha1
+metadata:
+  name: merchant-webapp
+
+endpoints:
+  - name: http
+    type: HTTP
+    port: 9090
+    basePath: /
+    visibility:
+      - project
+      - external
+
+dependencies:
+  endpoints:
+    - component: merchant-payments-african-v1-payments-api
+      name: http
+      visibility: project
+      envBindings:
+        address: PAYMENTS_API_URL
+  resources:
+    - ref: merchant-payments-e6e3abed
+      envBindings:
+        client_id: THUNDER_APP_CLIENT_ID
+        issuer: THUNDER_APP_ISSUER
+        jwks_url: THUNDER_APP_JWKS_URL
+        resource: THUNDER_APP_RESOURCE
+        scopes: THUNDER_APP_SCOPES
