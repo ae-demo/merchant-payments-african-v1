@@ -1,0 +1,91 @@
+import ballerina/test;
+
+// Balance-sufficiency on a payout request (acceptance: "payouts (with
+// balance-sufficiency check)").
+
+@test:Config {}
+function testPayoutAllowedWithinBalance() {
+    test:assertTrue(isPayoutAllowed(50d, 100d));
+}
+
+@test:Config {}
+function testPayoutAllowedExactBalance() {
+    test:assertTrue(isPayoutAllowed(100d, 100d));
+}
+
+@test:Config {}
+function testPayoutRejectedOverBalance() {
+    test:assertFalse(isPayoutAllowed(150d, 100d));
+}
+
+@test:Config {}
+function testPayoutRejectedNonPositiveAmount() {
+    test:assertFalse(isPayoutAllowed(0d, 100d));
+    test:assertFalse(isPayoutAllowed(-10d, 100d));
+}
+
+// Refund amount resolution — domain-model.md's refund invariant: default to
+// the remaining refundable balance, never exceed it.
+
+@test:Config {}
+function testRefundDefaultsToFullRemainingAmount() returns error? {
+    decimal resolved = check resolveRefundAmount((), 100d, 0d);
+    test:assertEquals(resolved, 100d);
+}
+
+@test:Config {}
+function testRefundDefaultsToWhatIsLeftAfterAPriorPartialRefund() returns error? {
+    decimal resolved = check resolveRefundAmount((), 100d, 40d);
+    test:assertEquals(resolved, 60d);
+}
+
+@test:Config {}
+function testPartialRefundWithinRemainingIsAllowed() returns error? {
+    decimal resolved = check resolveRefundAmount(30d, 100d, 40d);
+    test:assertEquals(resolved, 30d);
+}
+
+@test:Config {}
+function testRefundBeyondRemainingIsRejected() {
+    decimal|error resolved = resolveRefundAmount(70d, 100d, 40d);
+    test:assertTrue(resolved is error);
+}
+
+@test:Config {}
+function testZeroOrNegativeRefundIsRejected() {
+    test:assertTrue(resolveRefundAmount(0d, 100d, 0d) is error);
+    test:assertTrue(resolveRefundAmount(-5d, 100d, 0d) is error);
+}
+
+// Transaction/payout status transitions — the payment-gateway's vocabulary
+// mapped onto this component's own (domain-model.md's status enums).
+
+@test:Config {}
+function testGatewayAuthorizedMapsToSucceeded() {
+    test:assertEquals(fromGatewayPaymentStatus("authorized"), "succeeded");
+}
+
+@test:Config {}
+function testGatewayDeclinedMapsToFailed() {
+    test:assertEquals(fromGatewayPaymentStatus("declined"), "failed");
+}
+
+@test:Config {}
+function testGatewayPendingPaymentStaysPending() {
+    test:assertEquals(fromGatewayPaymentStatus("pending"), "pending");
+}
+
+@test:Config {}
+function testGatewayPaidPayoutMapsToCompleted() {
+    test:assertEquals(fromGatewayPayoutStatus("paid"), "completed");
+}
+
+@test:Config {}
+function testGatewayFailedPayoutMapsToFailed() {
+    test:assertEquals(fromGatewayPayoutStatus("failed"), "failed");
+}
+
+@test:Config {}
+function testGatewayPendingPayoutStaysPending() {
+    test:assertEquals(fromGatewayPayoutStatus("pending"), "pending");
+}
