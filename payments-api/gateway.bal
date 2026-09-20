@@ -28,8 +28,16 @@ function chargeCustomer(string merchantId, decimal amount, string currency, stri
     };
     paymentgateway:Payment|error result = paymentGatewayClient->/payments.post(req);
     if result is error {
-        log:printWarn("payment-gateway charge failed", 'error = result, merchantId = merchantId, reference = reference);
+        // Indistinguishable from a genuine decline once mapped to "failed" —
+        // this warning, with the underlying error, is the only place that
+        // tells a technical/connectivity failure apart from a real decline.
+        log:printWarn("payment-gateway request failed (technical error, not a decline)",
+                'error = result, merchantId = merchantId, reference = reference);
         return {status: "failed", gatewayPaymentId: ""};
+    }
+    if result.status == "declined" {
+        log:printInfo("payment-gateway declined the charge", merchantId = merchantId, reference = reference,
+                gatewayPaymentId = result.paymentId);
     }
     return {status: fromGatewayPaymentStatus(result.status), gatewayPaymentId: result.paymentId};
 }
