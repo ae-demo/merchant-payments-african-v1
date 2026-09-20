@@ -1,0 +1,26 @@
+{
+  "name": "sms-service",
+  "resource": {
+    "ref": "sms-service",
+    "name": "sms-service",
+    "description": "An internal SMS sending service used to deliver text messages to end users on behalf of consuming projects.",
+    "provider": "Internal SMS Service (mock-demo)",
+    "config": [
+      {
+        "key": "SMS_SERVICE_BASE_URL",
+        "description": "Base URL of the SMS service API."
+      }
+    ],
+    "contract": {
+      "type": "openapi",
+      "path": "openapi.yaml",
+      "origin": "registry"
+    },
+    "consumptionInstructions": "Whenever a project needs to send an SMS, call this service's API using the configured base URL. No authentication is required — the endpoint is reachable directly. Generate a client from the published OpenAPI contract rather than hand-writing requests."
+  },
+  "provenance": {
+    "registry": "sms-service/openapi.yaml",
+    "sha256": "d0ae3014e60eb3a072b26bd1a379920f42c8aa048ffee2adbc8e614e3c1ef2b7",
+    "readOn": "2026-09-20T13:13:22Z"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "payment-gateway",
+  "resource": {
+    "ref": "payment-gateway",
+    "name": "payment-gateway",
+    "description": "A payment processing service that handles charges and transactions for projects that need to process or handle payments.",
+    "provider": "Payment Gateway (internal mock service)",
+    "config": [
+      {
+        "key": "PAYMENT_GATEWAY_BASE_URL",
+        "description": "Base URL of the Payment Gateway API (e.g. https://development-default.apps.94.72.97.95.sslip.io/internal-payments-api). No credential is required to call it."
+      }
+    ],
+    "contract": {
+      "type": "openapi",
+      "path": "openapi.yaml",
+      "origin": "registry"
+    },
+    "consumptionInstructions": "Whenever any project needs to process or handle payments, use this resource. Call the API directly at the configured base URL — no API key or other credential is required beyond that. Generate a client from the published OpenAPI contract rather than hand-writing request/response shapes."
+  },
+  "provenance": {
+    "registry": "payment-gateway/openapi.yaml",
+    "sha256": "d5c630c4c0eba7e9eaaa1d647943e39a77da889682ff446f4ee74fe6a4c53553",
+    "readOn": "2026-09-20T13:13:22Z"
+  }
+}

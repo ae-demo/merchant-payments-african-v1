@@ -1,0 +1,26 @@
+{
+  "name": "email-service",
+  "resource": {
+    "ref": "email-service",
+    "name": "email-service",
+    "description": "Internal transactional email service that sends emails on behalf of consuming projects, exposed via a REST API.",
+    "provider": "Internal Email Service",
+    "config": [
+      {
+        "key": "EMAIL_SERVICE_BASE_URL",
+        "description": "Base URL of the internal email service API."
+      }
+    ],
+    "contract": {
+      "type": "openapi",
+      "path": "openapi.yaml",
+      "origin": "registry"
+    },
+    "consumptionInstructions": "Whenever a project needs to send an email, use this resource rather than integrating a new email provider. Call the internal email API at its base URL using the operations described in its OpenAPI contract. No authentication or API key is required — the endpoint is reachable directly with no credentials."
+  },
+  "provenance": {
+    "registry": "email-service/openapi.yaml",
+    "sha256": "6060551c919d322919affbeacc3d0b9ff4fabf0c443010b885eb027f4e866f13",
+    "readOn": "2026-09-20T13:13:22Z"
+  }
+}
