@@ -64,6 +64,29 @@ criterion's `must`; it is expected to fail honestly against the live system,
 and the failure is attributed to this root cause in the report rather than
 healed away.
 
+## Re-validation (2026-09-20, commit 53cd637)
+
+A fix landed on `main` between validation cycles (bug issues #10–#14):
+`payments-api`'s external clients are now pinned to HTTP/1.1, and a gateway
+decline is logged separately from a technical/connection failure
+(`payments-api/gateway.bal`, `clients.bal`). The fix's own commit message
+concludes the charges were being genuinely declined by the gateway, not
+silently misrouted — i.e. it improves diagnosis, not the gateway's answer.
+
+Re-running the full committed regression set (24 specs, all pre-existing —
+none re-authored) against the redeployed system confirms that conclusion:
+**the same 5 criteria fail with the identical live symptom** (Checkout UI
+renders "Payment failed" for every attempt; AC-013-a/014-a's buttons stay
+disabled as the correct cascading effect). One additional one-off failure
+(AC-001-a, a `waitForMerchantLanding` timeout) appeared on the first full-suite
+pass and did not reproduce on three follow-up runs — re-drive confirmed the
+app behaves correctly; the failing run's result was superseded by later
+passing runs per the report merge, not healed. No spec was modified.
+
+The payment-gateway integration continuing to decline every charge remains a
+genuine, live defect (or an inherent limitation of this deployed
+environment's gateway sandbox) — unresolved by this cycle's fix.
+
 ## Per-criterion plan
 
 ### AC-001-a — signed-in user can submit a business registration
