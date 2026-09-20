@@ -7,11 +7,57 @@
   "appPath": "merchant-webapp",
   "entrypoint": "deployment/web-application",
   "exposure": "internet",
-  "dependencies": [
-    { "kind": "component", "name": "payments-api", "description": "Registers merchants, creates payment requests, reads transactions/balance/payouts, and drives the public checkout a Customer pays through." },
-    { "kind": "platform-resource", "name": "thunder-app", "resourceType": "thunder-app", "parameters": {}, "description": "Signs Merchant users in via SSO." }
+  "stories": [
+    1,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14
   ],
   "description": "The Merchant-facing single-page app: business registration, dashboard, payment request creation, transaction history, payout account setup and payout requests, refunds, plus the public (unauthenticated) checkout page a Customer opens from a payment link to pay by mobile money or card. Does not process payments itself — it calls payments-api, which talks to the payment gateway.",
-  "stories": [1, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14],
-  "skillsPinned": ["wireframes", "react-webapp", "oxygen-ui-design-system", "thunder-authentication"]
+  "dependencies": [
+    {
+      "kind": "component",
+      "name": "payments-api",
+      "description": "Registers merchants, creates payment requests, reads transactions/balance/payouts, and drives the public checkout a Customer pays through.",
+      "wiring": {
+        "endpoint": {
+          "component": "merchant-payments-african-v1-payments-api",
+          "name": "http",
+          "visibility": "project",
+          "envBindings": {
+            "address": "PAYMENTS_API_URL"
+          }
+        }
+      }
+    },
+    {
+      "kind": "platform-resource",
+      "name": "thunder-app",
+      "description": "Signs Merchant users in via SSO.",
+      "resourceType": "thunder-app",
+      "wiring": {
+        "ref": "merchant-payments-e6e3abed",
+        "envBindings": {
+          "client_id": "THUNDER_APP_CLIENT_ID",
+          "issuer": "THUNDER_APP_ISSUER",
+          "jwks_url": "THUNDER_APP_JWKS_URL",
+          "resource": "THUNDER_APP_RESOURCE",
+          "scopes": "THUNDER_APP_SCOPES"
+        }
+      }
+    }
+  ],
+  "skillsPinned": [
+    "wireframes",
+    "react-webapp",
+    "oxygen-ui-design-system",
+    "thunder-authentication"
+  ]
 }

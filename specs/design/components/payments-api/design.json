@@ -7,14 +7,99 @@
   "appPath": "payments-api",
   "entrypoint": "deployment/service",
   "exposure": "intranet",
-  "dependencies": [
-    { "kind": "platform-resource", "name": "thunder-app", "resourceType": "thunder-app", "parameters": {}, "description": "Verifies the gateway's signed assertion for Merchant and Platform Admin callers." },
-    { "kind": "platform-resource", "name": "payments-db", "resourceType": "postgres-cnpg", "parameters": {}, "description": "Stores merchants, payout accounts, payment requests, transactions, refunds, payouts and disputes." },
-    { "kind": "external", "name": "payment-gateway", "description": "Charges customers for a payment request by mobile money or card." },
-    { "kind": "external", "name": "email-service", "description": "Sends merchant approval and payment/payout notification emails." },
-    { "kind": "external", "name": "sms-service", "description": "Sends customer payment confirmation SMS." }
+  "stories": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
   ],
   "description": "The core backend: merchant registration and approval, payment request creation, charging customers through the payment gateway, transaction history, merchant balance and payouts, refunds, and platform-wide admin views over merchants, transactions, payouts and disputes. Does not render any UI.",
-  "stories": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-  "skillsPinned": ["openapi-conventions", "ballerina", "api-management", "thunder-authentication"]
+  "dependencies": [
+    {
+      "kind": "platform-resource",
+      "name": "thunder-app",
+      "description": "Verifies the gateway's signed assertion for Merchant and Platform Admin callers.",
+      "resourceType": "thunder-app",
+      "wiring": {
+        "ref": "merchant-payments-e6e3abed",
+        "envBindings": {
+          "client_id": "THUNDER_APP_CLIENT_ID",
+          "issuer": "THUNDER_APP_ISSUER",
+          "jwks_url": "THUNDER_APP_JWKS_URL",
+          "resource": "THUNDER_APP_RESOURCE",
+          "scopes": "THUNDER_APP_SCOPES"
+        }
+      }
+    },
+    {
+      "kind": "platform-resource",
+      "name": "payments-db",
+      "description": "Stores merchants, payout accounts, payment requests, transactions, refunds, payouts and disputes.",
+      "resourceType": "postgres-cnpg",
+      "wiring": {
+        "ref": "merchant-payments-accaafc9",
+        "envBindings": {
+          "dbname": "PAYMENTS_DB_DBNAME",
+          "host": "PAYMENTS_DB_HOST",
+          "password": "PAYMENTS_DB_PASSWORD",
+          "port": "PAYMENTS_DB_PORT",
+          "user": "PAYMENTS_DB_USER"
+        }
+      }
+    },
+    {
+      "kind": "external",
+      "name": "payment-gateway",
+      "description": "Charges customers for a payment request by mobile money or card.",
+      "wiring": {
+        "ref": "merchant-payments-819de5fc",
+        "envBindings": {
+          "PAYMENT_GATEWAY_BASE_URL": "PAYMENT_GATEWAY_BASE_URL"
+        }
+      }
+    },
+    {
+      "kind": "external",
+      "name": "email-service",
+      "description": "Sends merchant approval and payment/payout notification emails.",
+      "wiring": {
+        "ref": "merchant-payments-f6f33f13",
+        "envBindings": {
+          "EMAIL_SERVICE_BASE_URL": "EMAIL_SERVICE_BASE_URL"
+        }
+      }
+    },
+    {
+      "kind": "external",
+      "name": "sms-service",
+      "description": "Sends customer payment confirmation SMS.",
+      "wiring": {
+        "ref": "merchant-payments-6f32a002",
+        "envBindings": {
+          "SMS_SERVICE_BASE_URL": "SMS_SERVICE_BASE_URL"
+        }
+      }
+    }
+  ],
+  "exposesAPI": {
+    "auth": "end-user-required"
+  },
+  "skillsPinned": [
+    "openapi-conventions",
+    "ballerina",
+    "api-management",
+    "thunder-authentication"
+  ]
 }

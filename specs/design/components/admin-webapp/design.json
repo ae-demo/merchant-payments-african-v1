@@ -7,11 +7,50 @@
   "appPath": "admin-webapp",
   "entrypoint": "deployment/web-application",
   "exposure": "internet",
-  "dependencies": [
-    { "kind": "component", "name": "payments-api", "description": "Lists and approves/rejects merchant registrations, reads all merchants' transactions and payouts, and reviews/resolves disputes." },
-    { "kind": "platform-resource", "name": "thunder-app", "resourceType": "thunder-app", "parameters": {}, "description": "Signs Platform Admin users in via SSO." }
+  "stories": [
+    2,
+    4,
+    15,
+    16
   ],
   "description": "The Platform Admin single-page app: reviewing and approving/rejecting new merchant registrations, a platform-wide view of transactions and payouts across all merchants, and reviewing/resolving disputed or failed transactions. Does not expose any merchant self-service function.",
-  "stories": [2, 4, 15, 16],
-  "skillsPinned": ["wireframes", "react-webapp", "oxygen-ui-design-system", "thunder-authentication"]
+  "dependencies": [
+    {
+      "kind": "component",
+      "name": "payments-api",
+      "description": "Lists and approves/rejects merchant registrations, reads all merchants' transactions and payouts, and reviews/resolves disputes.",
+      "wiring": {
+        "endpoint": {
+          "component": "merchant-payments-african-v1-payments-api",
+          "name": "http",
+          "visibility": "project",
+          "envBindings": {
+            "address": "PAYMENTS_API_URL"
+          }
+        }
+      }
+    },
+    {
+      "kind": "platform-resource",
+      "name": "thunder-app",
+      "description": "Signs Platform Admin users in via SSO.",
+      "resourceType": "thunder-app",
+      "wiring": {
+        "ref": "merchant-payments-e6e3abed",
+        "envBindings": {
+          "client_id": "THUNDER_APP_CLIENT_ID",
+          "issuer": "THUNDER_APP_ISSUER",
+          "jwks_url": "THUNDER_APP_JWKS_URL",
+          "resource": "THUNDER_APP_RESOURCE",
+          "scopes": "THUNDER_APP_SCOPES"
+        }
+      }
+    }
+  ],
+  "skillsPinned": [
+    "wireframes",
+    "react-webapp",
+    "oxygen-ui-design-system",
+    "thunder-authentication"
+  ]
 }
