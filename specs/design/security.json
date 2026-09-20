@@ -1,0 +1,94 @@
+{
+  "version": 3,
+  "permissions": [
+    {
+      "resource": "merchants",
+      "component": "payments-api",
+      "description": "Merchant business registrations",
+      "actions": [
+        { "handle": "read", "description": "The caller's own merchant profile" },
+        { "handle": "read-all", "description": "Every merchant" },
+        { "handle": "approve", "description": "Approve a pending merchant" },
+        { "handle": "reject", "description": "Reject a pending merchant" }
+      ]
+    },
+    {
+      "resource": "payment-requests",
+      "component": "payments-api",
+      "description": "Payment requests a merchant issues to a customer",
+      "actions": [
+        { "handle": "submit", "description": "Create a payment request" },
+        { "handle": "read", "description": "The caller's own payment requests" }
+      ]
+    },
+    {
+      "resource": "transactions",
+      "component": "payments-api",
+      "description": "Payments made against a payment request",
+      "actions": [
+        { "handle": "read", "description": "The caller's own transactions" },
+        { "handle": "read-all", "description": "Every transaction" },
+        { "handle": "refund", "description": "Refund the caller's own completed transaction" }
+      ]
+    },
+    {
+      "resource": "payout-accounts",
+      "component": "payments-api",
+      "description": "A merchant's payout bank account",
+      "actions": [
+        { "handle": "manage", "description": "Read or update the caller's own payout account" }
+      ]
+    },
+    {
+      "resource": "balances",
+      "component": "payments-api",
+      "description": "A merchant's collected balance",
+      "actions": [
+        { "handle": "read", "description": "The caller's own balance" }
+      ]
+    },
+    {
+      "resource": "payouts",
+      "component": "payments-api",
+      "description": "Payouts of a merchant's balance",
+      "actions": [
+        { "handle": "request", "description": "Request a payout of the caller's own balance" },
+        { "handle": "read", "description": "The caller's own payout history" },
+        { "handle": "read-all", "description": "Every payout" }
+      ]
+    },
+    {
+      "resource": "disputes",
+      "component": "payments-api",
+      "description": "Disputed or failed transactions escalated to the platform",
+      "actions": [
+        { "handle": "read-all", "description": "Every dispute" },
+        { "handle": "resolve", "description": "Resolve or reject a dispute" }
+      ]
+    }
+  ],
+  "groups": [
+    { "name": "PlatformAdmins", "description": "Platform operators who approve merchants, oversee transactions and handle disputes" }
+  ],
+  "roles": [
+    {
+      "name": "Merchant",
+      "description": "Registers a business, creates payment requests, tracks transactions and balance, and requests payouts.",
+      "stories": [1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+      "grants": ["merchants:read", "payment-requests:submit", "payment-requests:read", "transactions:read", "transactions:refund", "payout-accounts:manage", "balances:read", "payouts:request", "payouts:read"],
+      "enrolment": "self-service"
+    },
+    {
+      "name": "PlatformAdmin",
+      "description": "Reviews merchant registrations, oversees transactions and payouts platform-wide, and resolves disputes.",
+      "stories": [2, 4, 15, 16],
+      "grants": ["merchants:read-all", "merchants:approve", "merchants:reject", "transactions:read-all", "payouts:read-all", "disputes:read-all", "disputes:resolve"],
+      "assignTo": ["PlatformAdmins"]
+    }
+  ],
+  "testUsers": [
+    { "username": "test-merchant", "roles": ["Merchant"] },
+    { "username": "test-merchant-2", "roles": ["Merchant"] },
+    { "username": "test-platform-admin", "roles": ["PlatformAdmin"] }
+  ]
+}
