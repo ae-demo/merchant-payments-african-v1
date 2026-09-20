@@ -1,8 +1,8 @@
 # Validation report
 
 - **Issue:** #8
-- **Commit:** 3c32dd333aabff1b27e84a1b990205c446fc4080
-- **Generated:** 2026-09-20T14:48:45.847Z
+- **Commit:** 53cd637435130616163fc351e893ec6e34aa6ba9
+- **Generated:** 2026-09-20T15:25:15.540Z
 - **Playwright:** 1.61.1
 
 ## Summary
@@ -131,14 +131,14 @@ Location: `AC-014-a.spec.ts:9`
 ```
 Error: expect(locator).toBeEnabled() failed
 
-Locator:  getByRole('row').filter({ hasText: '433.00' }).first().getByRole('button', { name: 'Refund' })
+Locator:  getByRole('row').filter({ hasText: '112.00' }).first().getByRole('button', { name: 'Refund' })
 Expected: enabled
 Received: disabled
 Timeout:  10000ms
 
 Call log:
   - Expect "toBeEnabled" with timeout 10000ms
-  - waiting for getByRole('row').filter({ hasText: '433.00' }).first().getByRole('button', { name: 'Refund' })
+  - waiting for getByRole('row').filter({ hasText: '112.00' }).first().getByRole('button', { name: 'Refund' })
     24 × locator resolved to <button disabled tabindex="-1" type="button" class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeSmall MuiButton-outlinedSizeSmall MuiButton-colorError Mui-disabled MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeSmall MuiButton-outlinedSizeSmall MuiButton-colorError css-6fe1un">Refund</button>
        - unexpected value "disabled"
 
