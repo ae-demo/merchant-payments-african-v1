@@ -83,7 +83,7 @@
       "statement": "A merchant receives a notification when a payment is received",
       "stories": [10],
       "criteria": [
-        { "id": "AC-010-a", "must": "A merchant is notified when a payment against one of their payment requests succeeds", "method": "manual" }
+        { "id": "AC-010-a", "must": "A merchant is notified when a payment against one of their payment requests succeeds", "method": "e2e" }
       ]
     },
     {

@@ -10,24 +10,35 @@ import ballerina/http;
 // indistinguishably from a business decline/error at the call site.
 final paymentgateway:Client paymentGatewayClient = check new (
     {httpVersion: http:HTTP_1_1},
-    joinBase(paymentGatewayBaseUrl, "/v1")
+    serviceRoot(paymentGatewayBaseUrl, "http://localhost:8080/v1")
 );
 final emailservice:Client emailServiceClient = check new (
     {httpVersion: http:HTTP_1_1},
-    joinBase(emailServiceBaseUrl, "/v1")
+    serviceRoot(emailServiceBaseUrl, "http://localhost:8080/v1")
 );
 final smsservice:Client smsServiceClient = check new (
     {httpVersion: http:HTTP_1_1},
-    joinBase(smsServiceBaseUrl, "/v1")
+    serviceRoot(smsServiceBaseUrl, "http://localhost:8080/v1")
 );
 
-// Joins a `basePath` onto an injected base URL that may or may not end in
-// `/`, and may be empty (this milestone's external credentials/addresses can
-// be unconfigured — a build-time client still has to construct cleanly).
-function joinBase(string base, string basePath) returns string {
-    if base.trim() == "" {
-        return "http://localhost:8080" + basePath;
+// The service URL for a generated client: the platform-injected base URL as
+// given, or the contract's own default server when the environment has not
+// wired one.
+//
+// The injected value IS the API root — the platform's route for
+// `<dep>/...` already resolves to the service's `/v1` prefix, and the
+// generated clients' resource paths are bare ("/payments", "/emails",
+// "/sms"). Appending "/v1" here produced "/v1/v1/payments" and 404'd every
+// outbound call, which `chargeCustomer` then mapped to a "failed"
+// transaction — indistinguishable from a decline at the call site, and
+// misread as one by two validation cycles.
+//
+// The fallback keeps "/v1" because it is part of the OpenAPI contract's
+// default server (`http://localhost:8080/v1`), i.e. a root, not a join.
+function serviceRoot(string base, string fallback) returns string {
+    string trimmed = base.trim();
+    if trimmed == "" {
+        return fallback;
     }
-    string trimmed = base.endsWith("/") ? base.substring(0, base.length() - 1) : base;
-    return trimmed + basePath;
+    return trimmed.endsWith("/") ? trimmed.substring(0, trimmed.length() - 1) : trimmed;
 }

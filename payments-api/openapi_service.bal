@@ -327,7 +327,9 @@ service http:InterceptableService / on ep0 {
         PayoutOutcome outcome = requestGatewayPayout(merchant.id, payload.amount, merchant.currency,
                 account.bankName, account.accountNumber, newId());
         PayoutRow payout = check insertPayout(merchant.id, payload.amount, outcome.status, outcome.gatewayPayoutId);
-        check adjustMerchantBalance(merchant.id, -payload.amount);
+        if shouldDebitForPayout(outcome.status) {
+            check adjustMerchantBalance(merchant.id, -payload.amount);
+        }
         notifyPayoutOutcome(merchant, payout);
         return <PayoutCreated>{body: toPayout(payout)};
     }
