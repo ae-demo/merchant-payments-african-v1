@@ -3,6 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Pre-paint colour scheme. Transcribed from MUI's own InitColorSchemeScript
+         (@mui/system/InitColorSchemeScript/InitColorSchemeScript.js) with this
+         app's four parameters: mode key `mui-mode`, scheme key `mui-color-scheme`,
+         attribute `data-color-scheme` (Oxygen's theme sets
+         `colorSchemeSelector: "data-color-scheme"`), default mode `system`.
+         MUI ships that component for server rendering only; a Vite SPA has no
+         server render, so without this the attribute first appears when the
+         ~1.5 MB module executes and a dark-mode visitor gets a white flash
+         until then. -->
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem("mui-mode") || "system";
+          var dark = localStorage.getItem("mui-color-scheme-dark") || "dark";
+          var light = localStorage.getItem("mui-color-scheme-light") || "light";
+          var colorScheme = "";
+          if (mode === "system") {
+            colorScheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? dark : light;
+          }
+          if (mode === "light") colorScheme = light;
+          if (mode === "dark") colorScheme = dark;
+          if (colorScheme) document.documentElement.setAttribute("data-color-scheme", colorScheme);
+        } catch (e) {}
+      })();
+    </script>
+    <!-- Turns that attribute into a `color-scheme` the browser can honour on the
+         very first paint, so the canvas, scrollbars and form controls start in
+         the right scheme. A rule rather than an inline style, deliberately: MUI
+         rewrites the attribute on every toggle, and an inline `color-scheme`
+         would outrank CssBaseline's own rule and freeze the browser chrome in
+         whatever scheme the page happened to load with. Both rules below are
+         driven by the same attribute MUI owns, so they cannot disagree with it. -->
+    <style>
+      html[data-color-scheme="light"] { color-scheme: light; }
+      html[data-color-scheme="dark"] { color-scheme: dark; }
+    </style>
     <title>Merchant Payments</title>
     <script src="/env-config.js"></script>
   </head>

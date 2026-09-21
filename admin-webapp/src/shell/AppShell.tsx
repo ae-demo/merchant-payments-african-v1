@@ -2,6 +2,7 @@ import type { JSX } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import {
   AppShell as OxygenAppShell,
+  ColorSchemeToggle,
   Divider,
   Footer,
   Header,
@@ -71,6 +72,8 @@ export function AppShell(): JSX.Element {
           </Header.Brand>
           <Header.Spacer />
           <Header.Actions>
+            <ColorSchemeToggle />
+            <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
             <UserMenu>
               <UserMenu.Trigger name={username || "Platform Admin"} />
               <UserMenu.Header name={username || "Platform Admin"} email="" role={roleLabel} />
