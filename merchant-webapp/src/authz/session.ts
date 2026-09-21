@@ -99,7 +99,6 @@ const userManager = new UserManager({
   // There is no env key for the redirect URI. The platform registers the SPA's
   // served callback URL, and the SPA is served at its host root.
   redirect_uri: window.location.origin + "/callback",
-  post_logout_redirect_uri: window.location.origin,
 
   response_type: "code",
   scope: env.THUNDER_APP_SCOPES,
@@ -137,8 +136,19 @@ export async function handleCallback(): Promise<void> {
   await userManager.signinCallback();
 }
 
-// The IdP's discovery document advertises no end_session_endpoint, so
-// signoutRedirect() rejects. Drop the LOCAL session instead.
+// Thunder DOES advertise an `end_session_endpoint`, so `signoutRedirect()`
+// NAVIGATES rather than throwing — the catch below cannot fire once the
+// browser has left the page. It is kept only for a client-side failure
+// before navigation (e.g. no stored user to build the request from).
+//
+// No `post_logout_redirect_uri` is sent. Thunder validates that parameter
+// against a registered post-logout list which the platform never populates,
+// so ANY value is refused — MEASURED: both this app's origin and its own
+// registered `/callback` URI answer 400 `invalid post_logout_redirect_uri`.
+// Omitting it returns 302 to the IdP's sign-out gate and DOES terminate the
+// session, which is what lets a demo switch between test users. Registering
+// a post-logout URI is a platform change; until then the user finishes on
+// the IdP's gate page rather than back here.
 export async function signOut(): Promise<void> {
   try {
     await userManager.signoutRedirect();
