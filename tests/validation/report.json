@@ -1,60 +1,12 @@
 {
   "schemaVersion": 1,
   "issue": 8,
-  "commit": "3cd5e8874bcbbeb29f473cd16b62f33945ec8877",
-  "generatedAt": "2026-09-21T08:22:35.855Z",
+  "commit": "6786185246a28ea467b1940e2ac77d2ac81a4861",
+  "generatedAt": "2026-09-21T14:57:59.137Z",
   "playwrightVersion": "1.61.1",
   "batches": [
     {
-      "file": "2026-09-21T08-02-12-433Z.json",
-      "specs": 25
-    },
-    {
-      "file": "2026-09-21T08-11-38-790Z.json",
-      "specs": 2
-    },
-    {
-      "file": "2026-09-21T08-14-07-261Z.json",
-      "specs": 2
-    },
-    {
-      "file": "2026-09-21T08-14-24-577Z.json",
-      "specs": 2
-    },
-    {
-      "file": "2026-09-21T08-15-31-022Z.json",
-      "specs": 1
-    },
-    {
-      "file": "2026-09-21T08-15-43-308Z.json",
-      "specs": 2
-    },
-    {
-      "file": "2026-09-21T08-16-33-390Z.json",
-      "specs": 1
-    },
-    {
-      "file": "2026-09-21T08-17-09-714Z.json",
-      "specs": 1
-    },
-    {
-      "file": "2026-09-21T08-17-24-232Z.json",
-      "specs": 1
-    },
-    {
-      "file": "2026-09-21T08-17-41-589Z.json",
-      "specs": 4
-    },
-    {
-      "file": "2026-09-21T08-18-34-795Z.json",
-      "specs": 1
-    },
-    {
-      "file": "2026-09-21T08-18-45-052Z.json",
-      "specs": 2
-    },
-    {
-      "file": "2026-09-21T08-20-26-070Z.json",
+      "file": "2026-09-21T14-55-45-950Z.json",
       "specs": 25
     }
   ],
@@ -79,9 +31,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3457,
+      "durationMs": 3305,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-001-b",
@@ -93,9 +45,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3214,
+      "durationMs": 3228,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-002-a",
@@ -107,9 +59,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3758,
+      "durationMs": 3715,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-002-b",
@@ -121,9 +73,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 7959,
+      "durationMs": 8673,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-002-c",
@@ -135,9 +87,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3827,
+      "durationMs": 3841,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-003-a",
@@ -149,9 +101,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3098,
+      "durationMs": 3204,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-004-a",
@@ -163,9 +115,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3163,
+      "durationMs": 3063,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-005-a",
@@ -177,9 +129,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4175,
+      "durationMs": 4104,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-005-b",
@@ -191,9 +143,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4496,
+      "durationMs": 4570,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-006-a",
@@ -205,9 +157,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4008,
+      "durationMs": 3848,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-006-b",
@@ -219,9 +171,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 5763,
+      "durationMs": 4942,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-007-a",
@@ -233,9 +185,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4909,
+      "durationMs": 4139,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-007-b",
@@ -247,9 +199,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4921,
+      "durationMs": 4971,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-008-a",
@@ -261,9 +213,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 5002,
+      "durationMs": 5129,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-009-a",
@@ -275,9 +227,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 5106,
+      "durationMs": 4866,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-010-a",
@@ -303,9 +255,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4096,
+      "durationMs": 4344,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-012-a",
@@ -314,12 +266,12 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-012-a.spec.ts",
-      "healed": true,
-      "healAttempts": 1,
+      "healed": false,
+      "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3617,
+      "durationMs": 3607,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-012-b",
@@ -328,12 +280,12 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-012-b.spec.ts",
-      "healed": true,
-      "healAttempts": 1,
+      "healed": false,
+      "healAttempts": 0,
       "flaky": false,
-      "durationMs": 5749,
+      "durationMs": 4851,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-013-a",
@@ -342,12 +294,12 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-013-a.spec.ts",
-      "healed": true,
-      "healAttempts": 1,
+      "healed": false,
+      "healAttempts": 0,
       "flaky": false,
-      "durationMs": 5746,
+      "durationMs": 6168,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-013-b",
@@ -359,9 +311,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3666,
+      "durationMs": 4065,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-014-a",
@@ -373,9 +325,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4851,
+      "durationMs": 5497,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-015-a",
@@ -387,9 +339,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 8235,
+      "durationMs": 8504,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-015-b",
@@ -398,12 +350,12 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-015-b.spec.ts",
-      "healed": true,
-      "healAttempts": 1,
+      "healed": false,
+      "healAttempts": 0,
       "flaky": false,
-      "durationMs": 8200,
+      "durationMs": 8079,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-016-a",
@@ -415,9 +367,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 7700,
+      "durationMs": 7740,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     },
     {
       "id": "AC-016-b",
@@ -426,12 +378,12 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-016-b.spec.ts",
-      "healed": true,
-      "healAttempts": 1,
+      "healed": false,
+      "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4489,
+      "durationMs": 4476,
       "failure": null,
-      "batch": "2026-09-21T08-20-26-070Z.json"
+      "batch": "2026-09-21T14-55-45-950Z.json"
     }
   ]
 }

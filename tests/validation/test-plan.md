@@ -276,6 +276,23 @@ this cycle either way.
 to exceed any real balance rather than depending on the balance being 0, so
 it was already correct regardless of how much the merchant holds.
 
+## Re-validation (2026-09-21, commits 0c0d7f3 / 9f3273f, PRs #19-#20)
+
+Two more commits landed on `main` since the prior cycle (PR #18, which closed
+at 25/26 e2e passing, 1 not_run): a logout fix (stopped sending an
+unregistered `post_logout_redirect_uri` to the IdP) and a light/dark theme
+completion for the webapps. Neither touches payment, registration, payout or
+dispute flows, but both touch shared shell chrome the specs render through
+(sign-out control, theme-dependent styling), so a full regression run was
+worth doing rather than assuming no impact.
+
+Ran the full committed 25-spec suite against the redeployed system: **all 25
+pass unmodified, no heals needed.** AC-010-a remains `not_run` for the same
+validation-access reason as the prior cycle (the email mock's `/emails`
+endpoint is still outside the validation runner's resolved endpoint set) —
+unchanged, not a new finding. Same result as the prior cycle: 25/26 e2e
+passing, 0 failing, 1 not_run.
+
 ## Independence & idempotency notes
 
 - Every spec signs in fresh (no shared `storageState`).
