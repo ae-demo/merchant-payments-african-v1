@@ -1,35 +1,71 @@
 {
   "schemaVersion": 1,
   "issue": 8,
-  "commit": "53cd637435130616163fc351e893ec6e34aa6ba9",
-  "generatedAt": "2026-09-20T15:25:15.540Z",
+  "commit": "3cd5e8874bcbbeb29f473cd16b62f33945ec8877",
+  "generatedAt": "2026-09-21T08:22:35.855Z",
   "playwrightVersion": "1.61.1",
   "batches": [
     {
-      "file": "2026-09-20T15-16-17-092Z.json",
+      "file": "2026-09-21T08-02-12-433Z.json",
       "specs": 25
     },
     {
-      "file": "2026-09-20T15-20-12-748Z.json",
+      "file": "2026-09-21T08-11-38-790Z.json",
+      "specs": 2
+    },
+    {
+      "file": "2026-09-21T08-14-07-261Z.json",
+      "specs": 2
+    },
+    {
+      "file": "2026-09-21T08-14-24-577Z.json",
+      "specs": 2
+    },
+    {
+      "file": "2026-09-21T08-15-31-022Z.json",
       "specs": 1
     },
     {
-      "file": "2026-09-20T15-21-01-186Z.json",
-      "specs": 7
+      "file": "2026-09-21T08-15-43-308Z.json",
+      "specs": 2
     },
     {
-      "file": "2026-09-20T15-22-11-622Z.json",
+      "file": "2026-09-21T08-16-33-390Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T08-17-09-714Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T08-17-24-232Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T08-17-41-589Z.json",
+      "specs": 4
+    },
+    {
+      "file": "2026-09-21T08-18-34-795Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T08-18-45-052Z.json",
+      "specs": 2
+    },
+    {
+      "file": "2026-09-21T08-20-26-070Z.json",
       "specs": 25
     }
   ],
   "totals": {
     "e2e": {
-      "total": 25,
-      "pass": 20,
-      "fail": 5,
-      "notRun": 0
+      "total": 26,
+      "pass": 25,
+      "fail": 0,
+      "notRun": 1
     },
-    "manual": 1,
+    "manual": 0,
     "scenario": 0
   },
   "criteria": [
@@ -43,9 +79,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3381,
+      "durationMs": 3457,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-001-b",
@@ -57,9 +93,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3379,
+      "durationMs": 3214,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-002-a",
@@ -71,9 +107,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3725,
+      "durationMs": 3758,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-002-b",
@@ -85,9 +121,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 7240,
+      "durationMs": 7959,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-002-c",
@@ -99,9 +135,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4149,
+      "durationMs": 3827,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-003-a",
@@ -113,9 +149,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3117,
+      "durationMs": 3098,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-004-a",
@@ -127,9 +163,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3069,
+      "durationMs": 3163,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-005-a",
@@ -141,9 +177,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4283,
+      "durationMs": 4175,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-005-b",
@@ -155,9 +191,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4308,
+      "durationMs": 4496,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-006-a",
@@ -169,26 +205,23 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3938,
+      "durationMs": 4008,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-006-b",
       "requirementId": "REQ-006",
       "must": "A successful mobile money payment marks the payment request as paid",
       "method": "e2e",
-      "status": "fail",
+      "status": "pass",
       "spec": "tests/e2e/specs/AC-006-b.spec.ts",
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 15494,
-      "failure": {
-        "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Payment successful' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for getByRole('heading', { name: 'Payment successful' })\n",
-        "location": "AC-006-b.spec.ts:9"
-      },
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "durationMs": 5763,
+      "failure": null,
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-007-a",
@@ -200,26 +233,23 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4779,
+      "durationMs": 4909,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-007-b",
       "requirementId": "REQ-007",
       "must": "A successful card payment marks the payment request as paid",
       "method": "e2e",
-      "status": "fail",
+      "status": "pass",
       "spec": "tests/e2e/specs/AC-007-b.spec.ts",
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 15445,
-      "failure": {
-        "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Payment successful' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for getByRole('heading', { name: 'Payment successful' })\n",
-        "location": "AC-007-b.spec.ts:9"
-      },
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "durationMs": 4921,
+      "failure": null,
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-008-a",
@@ -231,33 +261,30 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 5050,
+      "durationMs": 5002,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-009-a",
       "requirementId": "REQ-009",
       "must": "A customer sees a payment success confirmation immediately after a successful payment",
       "method": "e2e",
-      "status": "fail",
+      "status": "pass",
       "spec": "tests/e2e/specs/AC-009-a.spec.ts",
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 15386,
-      "failure": {
-        "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Payment successful' })\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 10000ms\n  - waiting for getByRole('heading', { name: 'Payment successful' })\n",
-        "location": "AC-009-a.spec.ts:9"
-      },
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "durationMs": 5106,
+      "failure": null,
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-010-a",
       "requirementId": "REQ-010",
       "must": "A merchant is notified when a payment against one of their payment requests succeeds",
-      "method": "manual",
-      "status": "manual",
+      "method": "e2e",
+      "status": "not_run",
       "spec": null,
       "healed": false,
       "healAttempts": 0,
@@ -276,9 +303,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4222,
+      "durationMs": 4096,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-012-a",
@@ -287,12 +314,12 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-012-a.spec.ts",
-      "healed": false,
-      "healAttempts": 0,
+      "healed": true,
+      "healAttempts": 1,
       "flaky": false,
-      "durationMs": 3445,
+      "durationMs": 3617,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-012-b",
@@ -301,29 +328,26 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-012-b.spec.ts",
-      "healed": false,
-      "healAttempts": 0,
+      "healed": true,
+      "healAttempts": 1,
       "flaky": false,
-      "durationMs": 3542,
+      "durationMs": 5749,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-013-a",
       "requirementId": "REQ-013",
       "must": "A merchant can request a payout up to their available balance",
       "method": "e2e",
-      "status": "fail",
+      "status": "pass",
       "spec": "tests/e2e/specs/AC-013-a.spec.ts",
-      "healed": false,
-      "healAttempts": 0,
+      "healed": true,
+      "healAttempts": 1,
       "flaky": false,
-      "durationMs": 13735,
-      "failure": {
-        "message": "Error: expect(locator).toBeEnabled() failed\n\nLocator:  getByRole('button', { name: 'Request' })\nExpected: enabled\nReceived: disabled\nTimeout:  10000ms\n\nCall log:\n  - Expect \"toBeEnabled\" with timeout 10000ms\n  - waiting for getByRole('button', { name: 'Request' })\n    24 × locator resolved to <button disabled tabindex=\"-1\" type=\"button\" class=\"MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-vboj8t\">Request</button>\n       - unexpected value \"disabled\"\n",
-        "location": "AC-013-a.spec.ts:7"
-      },
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "durationMs": 5746,
+      "failure": null,
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-013-b",
@@ -335,26 +359,23 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3895,
+      "durationMs": 3666,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-014-a",
       "requirementId": "REQ-014",
       "must": "A merchant can issue a refund for one of their own completed transactions",
       "method": "e2e",
-      "status": "fail",
+      "status": "pass",
       "spec": "tests/e2e/specs/AC-014-a.spec.ts",
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 15272,
-      "failure": {
-        "message": "Error: expect(locator).toBeEnabled() failed\n\nLocator:  getByRole('row').filter({ hasText: '112.00' }).first().getByRole('button', { name: 'Refund' })\nExpected: enabled\nReceived: disabled\nTimeout:  10000ms\n\nCall log:\n  - Expect \"toBeEnabled\" with timeout 10000ms\n  - waiting for getByRole('row').filter({ hasText: '112.00' }).first().getByRole('button', { name: 'Refund' })\n    24 × locator resolved to <button disabled tabindex=\"-1\" type=\"button\" class=\"MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeSmall MuiButton-outlinedSizeSmall MuiButton-colorError Mui-disabled MuiButton-root MuiButton-outlined MuiButton-outlinedError MuiButton-sizeSmall MuiButton-outlinedSizeSmall MuiButton-colorError css-6fe1un\">Refund</button>\n       - unexpected value \"disabled\"\n",
-        "location": "AC-014-a.spec.ts:9"
-      },
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "durationMs": 4851,
+      "failure": null,
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-015-a",
@@ -366,9 +387,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 9076,
+      "durationMs": 8235,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-015-b",
@@ -377,12 +398,12 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-015-b.spec.ts",
-      "healed": false,
-      "healAttempts": 0,
+      "healed": true,
+      "healAttempts": 1,
       "flaky": false,
-      "durationMs": 3558,
+      "durationMs": 8200,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-016-a",
@@ -394,9 +415,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 7994,
+      "durationMs": 7700,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     },
     {
       "id": "AC-016-b",
@@ -405,12 +426,12 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-016-b.spec.ts",
-      "healed": false,
-      "healAttempts": 0,
+      "healed": true,
+      "healAttempts": 1,
       "flaky": false,
-      "durationMs": 9450,
+      "durationMs": 4489,
       "failure": null,
-      "batch": "2026-09-20T15-22-11-622Z.json"
+      "batch": "2026-09-21T08-20-26-070Z.json"
     }
   ]
 }
