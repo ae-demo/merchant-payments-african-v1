@@ -217,6 +217,65 @@ environment's gateway sandbox) — unresolved by this cycle's fix.
 - Open a dispute row, fill Resolution notes, click "Resolve dispute", assert
   redirect to `/disputes` and the row's status updates to "resolved".
 
+## Re-validation (2026-09-21, commit 8b801be / PR #17)
+
+A third fix landed on `main` between validation cycles: `payments-api`'s
+outbound clients were appending `/v1` to a base URL that already resolved to
+the mock services' `/v1` root, so every call to the payment gateway, email
+mock and SMS mock 404'd as `/v1/v1/...` — indistinguishable from a genuine
+decline at the call site (see PR #17's body for the evidence). The same PR
+also stopped a refused payout from debiting the merchant balance, and
+promoted AC-010-a from `manual` to `e2e`.
+
+Running the full committed regression set against the redeployed system
+confirms the fix: **the payment-gateway integration now succeeds.**
+AC-006-b, AC-007-b, AC-009-a and AC-014-a — the four criteria blocked by the
+decline bug on both prior cycles — all pass unmodified.
+
+Fixing the root cause surfaced five criteria whose specs had encoded
+assumptions that were only true while every charge failed, now healed (see
+`tests/e2e/heal-log.json` for the full entries; each re-verified passing
+twice, and the whole set re-run together to confirm no interaction):
+
+- **AC-012-a, AC-013-a** — the balance stat's `\d+\.\d{2}` text regex, unique
+  while the balance was permanently `0.00`, now also matches
+  payout-history table cells once real payouts exist (strict-mode
+  violation). Scoped to the balance's own heading. AC-013-a additionally hit
+  a genuine timing race: the page renders a `0.00` placeholder heading
+  before its `GET /me/balance` call resolves, and a plain read can capture
+  that placeholder instead of the real value — healed to wait for the
+  response itself. It also needed a fresh top-up before requesting a
+  payout, since a prior run of the same spec can leave the balance at 0
+  having just paid it all out (impossible to hit while the balance was
+  always 0 anyway).
+- **AC-012-b, AC-015-b** — asserted the "No payouts yet" / "No payouts"
+  empty state, correct only because no merchant had ever received a
+  successful payment. Real payout history now exists (and grows every run),
+  so healed to guarantee and assert a fresh, uniquely-amounted payout
+  instead — the same pattern AC-015-a already used for transactions.
+- **AC-016-b** — its setup created a fresh charge and assumed it would
+  reliably decline and auto-open a dispute (true only under the old bug).
+  Healed to pick an already-open dispute from this environment's standing
+  supply (auto-created by the ~65 failed charges from before the fix) rather
+  than trying to manufacture a new one.
+
+**AC-010-a (e2e, newly promoted) is `not_run`.** Its only observable
+channel — the email mock's `GET /emails` — is a dependency of `payments-api`
+(`EMAIL_SERVICE_BASE_URL`), not a project component; the validation runner's
+resolved endpoints cover only `admin-webapp`, `merchant-webapp` and
+`payments-api` (`/tmp/validation-context.json`), so the mock's base URL is
+not reachable from here, and per the aep-validation workflow its address may
+not be probed, scanned or inferred. `merchant-webapp` has no in-app
+notifications surface either (no such screen in
+`specs/design/components/merchant-webapp/wireframes.dsl`), so there is no
+alternative observable to assert against. This is a validation-access gap,
+not a defect: whether the notification actually fires is undetermined by
+this cycle either way.
+
+**AC-013-b needed no change** — it fills an amount ("999999999") guaranteed
+to exceed any real balance rather than depending on the balance being 0, so
+it was already correct regardless of how much the merchant holds.
+
 ## Independence & idempotency notes
 
 - Every spec signs in fresh (no shared `storageState`).
