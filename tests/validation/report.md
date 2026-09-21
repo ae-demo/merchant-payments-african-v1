@@ -1,8 +1,8 @@
 # Validation report
 
 - **Issue:** #8
-- **Commit:** 6786185246a28ea467b1940e2ac77d2ac81a4861
-- **Generated:** 2026-09-21T14:57:59.137Z
+- **Commit:** ddf919ec4797bb2c69501480e3286ff18810212e
+- **Generated:** 2026-09-21T15:38:54.674Z
 - **Playwright:** 1.61.1
 
 ## Summary
@@ -34,7 +34,7 @@
 | AC-009-a | A customer sees a payment success confirmation immediately after a successful payment | ✅ pass | `tests/e2e/specs/AC-009-a.spec.ts` | — |
 | AC-010-a | A merchant is notified when a payment against one of their payment requests succeeds | ⏭️ not_run | — | — |
 | AC-011-a | A merchant can save a payout bank account with bank name, account number and account holder name | ✅ pass | `tests/e2e/specs/AC-011-a.spec.ts` | — |
-| AC-012-a | A merchant can view their current available balance | ✅ pass | `tests/e2e/specs/AC-012-a.spec.ts` | — |
+| AC-012-a | A merchant can view their current available balance | ✅ pass | `tests/e2e/specs/AC-012-a.spec.ts` | healed ×1 |
 | AC-012-b | A merchant can view a history of their past payouts | ✅ pass | `tests/e2e/specs/AC-012-b.spec.ts` | — |
 | AC-013-a | A merchant can request a payout up to their available balance | ✅ pass | `tests/e2e/specs/AC-013-a.spec.ts` | — |
 | AC-013-b | A payout request for more than the available balance is refused | ✅ pass | `tests/e2e/specs/AC-013-b.spec.ts` | — |
@@ -43,4 +43,10 @@
 | AC-015-b | A platform admin can view payouts across every merchant | ✅ pass | `tests/e2e/specs/AC-015-b.spec.ts` | — |
 | AC-016-a | A platform admin can view a list of disputed or failed transactions | ✅ pass | `tests/e2e/specs/AC-016-a.spec.ts` | — |
 | AC-016-b | A platform admin can resolve or reject a dispute | ✅ pass | `tests/e2e/specs/AC-016-b.spec.ts` | — |
+
+## Healing log
+
+| Criterion | Classification | Change | Commit |
+|---|---|---|---|
+| AC-012-a | timing | Promise.all([page.waitForResponse(...), page.goto(...)]) then response.json() -> capture body eagerly from a 'response' event listener via response.json() called at fire time, polled with expect.poll(); avoids a race where the full-page navigation to /payouts tears down the CDP target before the deferred .json() call runs, intermittently throwing 'Network.getResponseBody: No resource with given identifier found' | `ddf919ec` |
 

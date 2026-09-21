@@ -293,6 +293,31 @@ endpoint is still outside the validation runner's resolved endpoint set) —
 unchanged, not a new finding. Same result as the prior cycle: 25/26 e2e
 passing, 0 failing, 1 not_run.
 
+## Re-validation (2026-09-21, no new commits since PR #21, redeployed system)
+
+No new commits landed on `main` since the previous cycle (PR #21, which
+closed at 25/26 e2e passing, 1 not_run) — `HEAD` is still `6786185`. Dispatched
+again anyway (redeploy / re-check), so ran the full committed 25-spec suite
+against the redeployed system to confirm current state.
+
+**AC-012-a was flaky**: `Promise.all([page.waitForResponse(...), page.goto(...)])`
+followed by `await balanceResponse.json()` intermittently threw `Protocol
+error (Network.getResponseBody): No resource with given identifier found`
+(observed on 2 of 5 runs, both isolated and in the full suite). Re-driven live
+with `playwright-cli run-code` using the identical pattern — reproduced the
+same flake, confirming the app itself is fine and the spec's technique races
+the full-page navigation to `/payouts` tearing down the CDP target before the
+deferred `.json()` call runs. Healed (timing, see `heal-log.json`): capture
+the response body eagerly inside a `page.on("response")` listener at the
+instant the response fires, polled with `expect.poll()`, instead of awaiting
+`.json()` after the `Promise.all()` settles. Re-ran the healed spec alone 4
+times consecutively — all green — then re-ran the full 25-spec suite once
+more: all pass.
+
+AC-010-a remains `not_run` for the same validation-access reason as every
+prior cycle (unchanged). Same overall result: 25/26 e2e passing, 0 failing
+(after the heal), 1 not_run.
+
 ## Independence & idempotency notes
 
 - Every spec signs in fresh (no shared `storageState`).

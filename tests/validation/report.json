@@ -1,12 +1,48 @@
 {
   "schemaVersion": 1,
   "issue": 8,
-  "commit": "6786185246a28ea467b1940e2ac77d2ac81a4861",
-  "generatedAt": "2026-09-21T14:57:59.137Z",
+  "commit": "ddf919ec4797bb2c69501480e3286ff18810212e",
+  "generatedAt": "2026-09-21T15:38:54.674Z",
   "playwrightVersion": "1.61.1",
   "batches": [
     {
-      "file": "2026-09-21T14-55-45-950Z.json",
+      "file": "2026-09-21T15-32-05-747Z.json",
+      "specs": 25
+    },
+    {
+      "file": "2026-09-21T15-34-22-987Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T15-35-31-387Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T15-35-36-615Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T15-35-41-364Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T15-36-11-350Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T15-36-16-293Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T15-36-21-535Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T15-36-26-343Z.json",
+      "specs": 1
+    },
+    {
+      "file": "2026-09-21T15-36-50-455Z.json",
       "specs": 25
     }
   ],
@@ -31,9 +67,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3305,
+      "durationMs": 3119,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-001-b",
@@ -45,9 +81,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3228,
+      "durationMs": 3205,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-002-a",
@@ -59,9 +95,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3715,
+      "durationMs": 3801,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-002-b",
@@ -73,9 +109,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 8673,
+      "durationMs": 7267,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-002-c",
@@ -87,9 +123,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3841,
+      "durationMs": 3988,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-003-a",
@@ -101,9 +137,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3204,
+      "durationMs": 2985,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-004-a",
@@ -115,9 +151,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3063,
+      "durationMs": 3173,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-005-a",
@@ -129,9 +165,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4104,
+      "durationMs": 4143,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-005-b",
@@ -143,9 +179,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4570,
+      "durationMs": 5916,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-006-a",
@@ -157,9 +193,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 3848,
+      "durationMs": 3989,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-006-b",
@@ -171,9 +207,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4942,
+      "durationMs": 4806,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-007-a",
@@ -185,9 +221,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4139,
+      "durationMs": 3941,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-007-b",
@@ -199,9 +235,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4971,
+      "durationMs": 4894,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-008-a",
@@ -213,9 +249,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 5129,
+      "durationMs": 4526,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-009-a",
@@ -227,9 +263,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4866,
+      "durationMs": 4822,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-010-a",
@@ -255,9 +291,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4344,
+      "durationMs": 3920,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-012-a",
@@ -266,12 +302,12 @@
       "method": "e2e",
       "status": "pass",
       "spec": "tests/e2e/specs/AC-012-a.spec.ts",
-      "healed": false,
-      "healAttempts": 0,
+      "healed": true,
+      "healAttempts": 1,
       "flaky": false,
-      "durationMs": 3607,
+      "durationMs": 3547,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-012-b",
@@ -283,9 +319,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4851,
+      "durationMs": 4611,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-013-a",
@@ -297,9 +333,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 6168,
+      "durationMs": 5235,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-013-b",
@@ -311,9 +347,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4065,
+      "durationMs": 3912,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-014-a",
@@ -325,9 +361,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 5497,
+      "durationMs": 4673,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-015-a",
@@ -339,9 +375,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 8504,
+      "durationMs": 7926,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-015-b",
@@ -353,9 +389,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 8079,
+      "durationMs": 8063,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-016-a",
@@ -367,9 +403,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 7740,
+      "durationMs": 7673,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     },
     {
       "id": "AC-016-b",
@@ -381,9 +417,9 @@
       "healed": false,
       "healAttempts": 0,
       "flaky": false,
-      "durationMs": 4476,
+      "durationMs": 4092,
       "failure": null,
-      "batch": "2026-09-21T14-55-45-950Z.json"
+      "batch": "2026-09-21T15-36-50-455Z.json"
     }
   ]
 }
