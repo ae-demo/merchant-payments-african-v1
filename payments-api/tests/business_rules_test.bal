@@ -89,3 +89,28 @@ function testGatewayFailedPayoutMapsToFailed() {
 function testGatewayPendingPayoutStaysPending() {
     test:assertEquals(fromGatewayPayoutStatus("pending"), "pending");
 }
+
+@test:Config {}
+function testServiceRootUsesTheInjectedBaseVerbatim() {
+    // The platform injects the API ROOT. The generated client's resource
+    // paths are already "/payments", "/emails", "/sms" — appending "/v1"
+    // produced "/v1/v1/payments" and 404'd every outbound call.
+    test:assertEquals(
+            serviceRoot("https://host.example/internal-payments-api", "http://localhost:8080/v1"),
+            "https://host.example/internal-payments-api");
+}
+
+@test:Config {}
+function testServiceRootTrimsOneTrailingSlash() {
+    test:assertEquals(
+            serviceRoot("https://host.example/internal-payments-api/", "http://localhost:8080/v1"),
+            "https://host.example/internal-payments-api");
+}
+
+@test:Config {}
+function testServiceRootFallsBackWhenUnconfigured() {
+    // An unset env var must yield the contract's own default server, which
+    // DOES carry /v1 — that prefix belongs in the serviceUrl, not in a join.
+    test:assertEquals(serviceRoot("", "http://localhost:8080/v1"), "http://localhost:8080/v1");
+    test:assertEquals(serviceRoot("   ", "http://localhost:8080/v1"), "http://localhost:8080/v1");
+}
