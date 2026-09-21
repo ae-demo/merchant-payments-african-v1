@@ -114,3 +114,21 @@ function testServiceRootFallsBackWhenUnconfigured() {
     test:assertEquals(serviceRoot("", "http://localhost:8080/v1"), "http://localhost:8080/v1");
     test:assertEquals(serviceRoot("   ", "http://localhost:8080/v1"), "http://localhost:8080/v1");
 }
+
+@test:Config {}
+function testFailedPayoutDoesNotDebitTheBalance() {
+    // The money never left the platform, so it must stay on the balance.
+    test:assertFalse(shouldDebitForPayout("failed"));
+}
+
+@test:Config {}
+function testCompletedPayoutDebitsTheBalance() {
+    test:assertTrue(shouldDebitForPayout("completed"));
+}
+
+@test:Config {}
+function testPendingPayoutDebitsTheBalance() {
+    // A pending payout is in flight and the funds are committed; releasing
+    // them would let the same balance be paid out twice.
+    test:assertTrue(shouldDebitForPayout("pending"));
+}

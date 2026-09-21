@@ -43,3 +43,13 @@ function resolveRefundAmount(decimal? requestedAmount, decimal transactionAmount
     }
     return amount;
 }
+
+// Whether a payout outcome should move money off the merchant's balance.
+//
+// A payout the gateway REFUSED never left the platform, so debiting for it
+// destroys the merchant's money with no corresponding transfer. A pending
+// payout is in flight and its funds are committed — releasing them would let
+// the same balance be paid out twice.
+function shouldDebitForPayout(string payoutStatus) returns boolean {
+    return payoutStatus != "failed";
+}
