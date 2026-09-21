@@ -4,3 +4,6 @@ core
 core.[0-9]*
 hs_err_pid*.log
 replay_pid*.log
+
+# playwright-cli exploration sessions — never committed
+/.playwright-cli/
