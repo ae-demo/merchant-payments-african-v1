@@ -362,6 +362,54 @@ validation runner's resolved endpoint set) — unchanged. Same overall result:
 branch) updated with this cycle's confirmation rather than opening a
 second PR.
 
+## Re-validation (2026-09-22, third dispatch, no new commits since PR #21, redeployed system) — new genuine finding
+
+Freshly dispatched again on the same milestone; `main` HEAD is still
+`6786185` (unchanged since PR #21 and both prior 2026-09-22 cycles). Checked
+out the existing `aep/m1-validation` branch and re-ran the full committed
+25-spec suite against the redeployed system.
+
+**AC-008-a failed** (24/25 committed specs passing, not the usual 25/25).
+Triaged live before touching anything:
+
+- Re-drove the spec's exact steps with `curl` against the live
+  `payments-api`: signed in as `test-merchant`, created a fresh payment
+  request, paid it via `POST /payment-requests/{id}/pay` (mobile-money) — the
+  gateway declined it (`status: "failed"`, expected: the fixed gateway now
+  succeeds *and* declines realistically, not always one or the other).
+  Confirmed via `GET /me/transactions?limit=157` that the transaction row
+  **does exist** in the database (index 144 of 157, most recently created).
+  Confirmed via `GET /me/transactions?limit=100` that it is **not** among the
+  first 100 rows — the exact window `TransactionHistory.tsx` fetches
+  (`params: { query: { limit: 100 } }`, no pagination, no way to page or
+  filter to a specific transaction beyond the free-text search box, which
+  only matches loaded rows).
+- Read `payments-api/transactions_repo.bal`: both `listTransactionsByMerchant`
+  and `listAllTransactions` order with
+  `ORDER BY t.paid_at DESC NULLS LAST` and **no secondary sort key**. Every
+  `failed`/`pending` transaction has `paid_at = NULL`, so Postgres gives no
+  ordering guarantee among them — a newly created failed transaction can
+  land anywhere relative to the ~65+ other NULL-`paid_at` rows accumulated
+  across validation cycles, not necessarily within the merchant-webapp's
+  fixed 100-row window.
+
+This is a **genuine defect**, not spec brittleness: the app itself fails to
+guarantee a merchant can see every one of their own transactions (the
+criterion's exact wording), because (a) the listing query has no tiebreaker
+for same-`paid_at` (i.e. same-NULL) rows and (b) the frontend hard-codes a
+100-row page with no pagination control to reach anything beyond it. A
+`failed` charge is a normal, expected outcome (the gateway declines some
+charges even when healthy — see AC-006-b/AC-007-b's own live evidence that
+it now succeeds *and* declines), so this is not a contrived edge case: any
+merchant whose failed-transaction count exceeds the page window can lose
+visibility into their own recent failed transactions indefinitely. Left
+`AC-008-a.spec.ts` unmodified and failing per the heal discipline — this is
+report content, not something to fix in the test.
+
+AC-010-a remains `not_run` for the same validation-access reason as every
+prior cycle. Overall result this cycle: **24/26 e2e passing, 1 failing
+(AC-008-a), 1 not_run.**
+
 ## Independence & idempotency notes
 
 - Every spec signs in fresh (no shared `storageState`).

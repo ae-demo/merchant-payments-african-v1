@@ -1,15 +1,15 @@
 # Validation report
 
 - **Issue:** #8
-- **Commit:** a2fe968f5415ea184190038fc107f87932f7194f
-- **Generated:** 2026-09-22T15:08:48.879Z
+- **Commit:** f22461dc7e6e6e11b4f969e1627a40db44b7794d
+- **Generated:** 2026-09-22T15:57:42.621Z
 - **Playwright:** 1.61.1
 
 ## Summary
 
 | Method | Total | Pass | Fail | Not run |
 |---|---|---|---|---|
-| e2e | 26 | 25 | 0 | 1 |
+| e2e | 26 | 24 | 1 | 1 |
 | manual (human checklist) | 0 | — | — | — |
 | scenario (not validated) | 0 | — | — | — |
 
@@ -30,7 +30,7 @@
 | AC-006-b | A successful mobile money payment marks the payment request as paid | ✅ pass | `tests/e2e/specs/AC-006-b.spec.ts` | — |
 | AC-007-a | A customer can open a payment request and choose to pay by card | ✅ pass | `tests/e2e/specs/AC-007-a.spec.ts` | — |
 | AC-007-b | A successful card payment marks the payment request as paid | ✅ pass | `tests/e2e/specs/AC-007-b.spec.ts` | — |
-| AC-008-a | A merchant can view a list of their own transactions with each transaction's status | ✅ pass | `tests/e2e/specs/AC-008-a.spec.ts` | — |
+| AC-008-a | A merchant can view a list of their own transactions with each transaction's status | ❌ fail | `tests/e2e/specs/AC-008-a.spec.ts` | — |
 | AC-009-a | A customer sees a payment success confirmation immediately after a successful payment | ✅ pass | `tests/e2e/specs/AC-009-a.spec.ts` | — |
 | AC-010-a | A merchant is notified when a payment against one of their payment requests succeeds | ⏭️ not_run | — | — |
 | AC-011-a | A merchant can save a payout bank account with bank name, account number and account holder name | ✅ pass | `tests/e2e/specs/AC-011-a.spec.ts` | — |
@@ -44,9 +44,30 @@
 | AC-016-a | A platform admin can view a list of disputed or failed transactions | ✅ pass | `tests/e2e/specs/AC-016-a.spec.ts` | — |
 | AC-016-b | A platform admin can resolve or reject a dispute | ✅ pass | `tests/e2e/specs/AC-016-b.spec.ts` | — |
 
+## Failures
+
+### AC-008-a — A merchant can view a list of their own transactions with each transaction's status
+
+Spec: `tests/e2e/specs/AC-008-a.spec.ts`
+Location: `AC-008-a.spec.ts:9`
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole('row').filter({ hasText: '299.00' }).first()
+Expected: visible
+Timeout: 10000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 10000ms
+  - waiting for getByRole('row').filter({ hasText: '299.00' }).first()
+
+```
+
 ## Healing log
 
 | Criterion | Classification | Change | Commit |
 |---|---|---|---|
-| AC-012-a | brittleness | Captured the /me/balance response body eagerly from a response event listener instead of awaiting .json() after Promise.all() with the navigation to /payouts, which intermittently raced a CDP "no resource" error during the full-page nav. Re-driven live via playwright-cli and confirmed the app itself is unaffected; this is spec timing brittleness, not a defect. | `ddf919ec` |
+| AC-012-a | timing | capture the /me/balance response body eagerly instead of after the full-page navigation to /payouts settles, to avoid a CDP resource-teardown race | `ddf919e` |
 
