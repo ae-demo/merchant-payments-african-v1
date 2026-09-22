@@ -318,6 +318,28 @@ AC-010-a remains `not_run` for the same validation-access reason as every
 prior cycle (unchanged). Same overall result: 25/26 e2e passing, 0 failing
 (after the heal), 1 not_run.
 
+## Re-validation (2026-09-22, no new commits since PR #21, redeployed system)
+
+No new commits landed on `main` since the previous cycle (PR #21, 25/26 e2e
+passing) — `HEAD` is still `6786185`. Continued on the existing
+`aep/m1-validation` branch (3 commits ahead: the base suite plus the AC-012-a
+heal, neither yet merged to `main`) and re-ran the full committed 25-spec
+suite against the redeployed system.
+
+All 25 specs passed unmodified on this run — no new heals needed. The
+report generator's heal-visibility check (diffs specs against `origin/main`)
+flagged `AC-012-a.spec.ts` as a pre-existing spec modified relative to `main`,
+because the prior cycle's heal commit (`ddf919e`) is only on this branch and
+`heal-log.json` is gitignored (never committed) — so the check has no local
+record of a heal that already happened. Recorded that heal's entry in
+`heal-log.json` (classification: brittleness, commit `ddf919e`) to satisfy
+the check; no spec content changed this cycle.
+
+AC-010-a remains `not_run` for the same validation-access reason as every
+prior cycle (the email mock's `/emails` endpoint is still outside the
+validation runner's resolved endpoint set) — unchanged. Same overall result:
+25/26 e2e passing, 0 failing, 1 not_run.
+
 ## Independence & idempotency notes
 
 - Every spec signs in fresh (no shared `storageState`).

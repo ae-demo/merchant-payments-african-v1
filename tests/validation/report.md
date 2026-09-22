@@ -1,8 +1,8 @@
 # Validation report
 
 - **Issue:** #8
-- **Commit:** ddf919ec4797bb2c69501480e3286ff18810212e
-- **Generated:** 2026-09-21T15:38:54.674Z
+- **Commit:** 4f125b094b50b679a6412d2e904acd1dd29c65c2
+- **Generated:** 2026-09-22T08:31:33.290Z
 - **Playwright:** 1.61.1
 
 ## Summary
@@ -48,5 +48,5 @@
 
 | Criterion | Classification | Change | Commit |
 |---|---|---|---|
-| AC-012-a | timing | Promise.all([page.waitForResponse(...), page.goto(...)]) then response.json() -> capture body eagerly from a 'response' event listener via response.json() called at fire time, polled with expect.poll(); avoids a race where the full-page navigation to /payouts tears down the CDP target before the deferred .json() call runs, intermittently throwing 'Network.getResponseBody: No resource with given identifier found' | `ddf919ec` |
+| AC-012-a | brittleness | Captured the /me/balance response body eagerly from a response event listener instead of awaiting .json() after Promise.all() with the navigation to /payouts, which intermittently raced a CDP "no resource" error during the full-page nav. Re-driven live via playwright-cli and confirmed the app itself is unaffected; this is spec timing brittleness, not a defect. | `ddf919ec` |
 
