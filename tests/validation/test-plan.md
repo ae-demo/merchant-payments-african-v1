@@ -276,6 +276,140 @@ this cycle either way.
 to exceed any real balance rather than depending on the balance being 0, so
 it was already correct regardless of how much the merchant holds.
 
+## Re-validation (2026-09-21, commits 0c0d7f3 / 9f3273f, PRs #19-#20)
+
+Two more commits landed on `main` since the prior cycle (PR #18, which closed
+at 25/26 e2e passing, 1 not_run): a logout fix (stopped sending an
+unregistered `post_logout_redirect_uri` to the IdP) and a light/dark theme
+completion for the webapps. Neither touches payment, registration, payout or
+dispute flows, but both touch shared shell chrome the specs render through
+(sign-out control, theme-dependent styling), so a full regression run was
+worth doing rather than assuming no impact.
+
+Ran the full committed 25-spec suite against the redeployed system: **all 25
+pass unmodified, no heals needed.** AC-010-a remains `not_run` for the same
+validation-access reason as the prior cycle (the email mock's `/emails`
+endpoint is still outside the validation runner's resolved endpoint set) —
+unchanged, not a new finding. Same result as the prior cycle: 25/26 e2e
+passing, 0 failing, 1 not_run.
+
+## Re-validation (2026-09-21, no new commits since PR #21, redeployed system)
+
+No new commits landed on `main` since the previous cycle (PR #21, which
+closed at 25/26 e2e passing, 1 not_run) — `HEAD` is still `6786185`. Dispatched
+again anyway (redeploy / re-check), so ran the full committed 25-spec suite
+against the redeployed system to confirm current state.
+
+**AC-012-a was flaky**: `Promise.all([page.waitForResponse(...), page.goto(...)])`
+followed by `await balanceResponse.json()` intermittently threw `Protocol
+error (Network.getResponseBody): No resource with given identifier found`
+(observed on 2 of 5 runs, both isolated and in the full suite). Re-driven live
+with `playwright-cli run-code` using the identical pattern — reproduced the
+same flake, confirming the app itself is fine and the spec's technique races
+the full-page navigation to `/payouts` tearing down the CDP target before the
+deferred `.json()` call runs. Healed (timing, see `heal-log.json`): capture
+the response body eagerly inside a `page.on("response")` listener at the
+instant the response fires, polled with `expect.poll()`, instead of awaiting
+`.json()` after the `Promise.all()` settles. Re-ran the healed spec alone 4
+times consecutively — all green — then re-ran the full 25-spec suite once
+more: all pass.
+
+AC-010-a remains `not_run` for the same validation-access reason as every
+prior cycle (unchanged). Same overall result: 25/26 e2e passing, 0 failing
+(after the heal), 1 not_run.
+
+## Re-validation (2026-09-22, no new commits since PR #21, redeployed system)
+
+No new commits landed on `main` since the previous cycle (PR #21, 25/26 e2e
+passing) — `HEAD` is still `6786185`. Continued on the existing
+`aep/m1-validation` branch (3 commits ahead: the base suite plus the AC-012-a
+heal, neither yet merged to `main`) and re-ran the full committed 25-spec
+suite against the redeployed system.
+
+All 25 specs passed unmodified on this run — no new heals needed. The
+report generator's heal-visibility check (diffs specs against `origin/main`)
+flagged `AC-012-a.spec.ts` as a pre-existing spec modified relative to `main`,
+because the prior cycle's heal commit (`ddf919e`) is only on this branch and
+`heal-log.json` is gitignored (never committed) — so the check has no local
+record of a heal that already happened. Recorded that heal's entry in
+`heal-log.json` (classification: brittleness, commit `ddf919e`) to satisfy
+the check; no spec content changed this cycle.
+
+AC-010-a remains `not_run` for the same validation-access reason as every
+prior cycle (the email mock's `/emails` endpoint is still outside the
+validation runner's resolved endpoint set) — unchanged. Same overall result:
+25/26 e2e passing, 0 failing, 1 not_run.
+
+## Re-validation (2026-09-22, second dispatch, no new commits since PR #21, redeployed system)
+
+Freshly dispatched again on the same milestone; `main` HEAD is still
+`6786185` (unchanged since PR #21 and the prior 2026-09-22 cycle above) — no
+new commits to re-validate against. Checked out the existing
+`aep/m1-validation` branch (still 4 commits ahead of `main`, unmerged) and
+re-ran the full committed 25-spec suite against the redeployed system.
+
+All 25 specs passed unmodified — no new heals. As in the prior cycle,
+`heal-log.json` is gitignored and therefore absent on this fresh checkout;
+recreated its single entry for the already-committed AC-012-a heal
+(`ddf919e`) so the report generator's heal-visibility check has a local
+record of it, matching content added on the prior 2026-09-22 cycle. No spec
+content changed.
+
+AC-010-a remains `not_run` for the same validation-access reason as every
+prior cycle (the email mock's `/emails` endpoint is still outside the
+validation runner's resolved endpoint set) — unchanged. Same overall result:
+25/26 e2e passing, 0 failing, 1 not_run. PR #21 (already open on this
+branch) updated with this cycle's confirmation rather than opening a
+second PR.
+
+## Re-validation (2026-09-22, third dispatch, no new commits since PR #21, redeployed system) — new genuine finding
+
+Freshly dispatched again on the same milestone; `main` HEAD is still
+`6786185` (unchanged since PR #21 and both prior 2026-09-22 cycles). Checked
+out the existing `aep/m1-validation` branch and re-ran the full committed
+25-spec suite against the redeployed system.
+
+**AC-008-a failed** (24/25 committed specs passing, not the usual 25/25).
+Triaged live before touching anything:
+
+- Re-drove the spec's exact steps with `curl` against the live
+  `payments-api`: signed in as `test-merchant`, created a fresh payment
+  request, paid it via `POST /payment-requests/{id}/pay` (mobile-money) — the
+  gateway declined it (`status: "failed"`, expected: the fixed gateway now
+  succeeds *and* declines realistically, not always one or the other).
+  Confirmed via `GET /me/transactions?limit=157` that the transaction row
+  **does exist** in the database (index 144 of 157, most recently created).
+  Confirmed via `GET /me/transactions?limit=100` that it is **not** among the
+  first 100 rows — the exact window `TransactionHistory.tsx` fetches
+  (`params: { query: { limit: 100 } }`, no pagination, no way to page or
+  filter to a specific transaction beyond the free-text search box, which
+  only matches loaded rows).
+- Read `payments-api/transactions_repo.bal`: both `listTransactionsByMerchant`
+  and `listAllTransactions` order with
+  `ORDER BY t.paid_at DESC NULLS LAST` and **no secondary sort key**. Every
+  `failed`/`pending` transaction has `paid_at = NULL`, so Postgres gives no
+  ordering guarantee among them — a newly created failed transaction can
+  land anywhere relative to the ~65+ other NULL-`paid_at` rows accumulated
+  across validation cycles, not necessarily within the merchant-webapp's
+  fixed 100-row window.
+
+This is a **genuine defect**, not spec brittleness: the app itself fails to
+guarantee a merchant can see every one of their own transactions (the
+criterion's exact wording), because (a) the listing query has no tiebreaker
+for same-`paid_at` (i.e. same-NULL) rows and (b) the frontend hard-codes a
+100-row page with no pagination control to reach anything beyond it. A
+`failed` charge is a normal, expected outcome (the gateway declines some
+charges even when healthy — see AC-006-b/AC-007-b's own live evidence that
+it now succeeds *and* declines), so this is not a contrived edge case: any
+merchant whose failed-transaction count exceeds the page window can lose
+visibility into their own recent failed transactions indefinitely. Left
+`AC-008-a.spec.ts` unmodified and failing per the heal discipline — this is
+report content, not something to fix in the test.
+
+AC-010-a remains `not_run` for the same validation-access reason as every
+prior cycle. Overall result this cycle: **24/26 e2e passing, 1 failing
+(AC-008-a), 1 not_run.**
+
 ## Independence & idempotency notes
 
 - Every spec signs in fresh (no shared `storageState`).
